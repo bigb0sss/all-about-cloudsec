@@ -1,6 +1,12 @@
 # all-about-cloudsec
 All About Cloud Security (AACS)
 
+## Cloud Goats
+| Name | Description | Category | Creater |
+| :--- | :---: | :--- | :--- |
+| [FLAWS](http://flaws.cloud/) | AWS Security Challenges | AWS | @Scott Piper |
+| [FLAWS2](http://flaws2.cloud/) | AWS Security Challenges | AWS | @Scott Piper |
+
 ## Kubernetes Goats
 | Name | Description | Category | Creater |
 | :--- | :---: | :--- | :--- |
