@@ -255,3 +255,46 @@ Default output format [None]: json
 For the next level, you need to get access to the web page running on an EC2 at 4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud
 It'll be useful to know that a snapshot was made of that EC2 shortly after nginx was setup on it.
 
+--- 
+Finding an account ID that was used to snapshot the disk volumn of the EC2.
+
+```
+% aws --profile level4 sts get-caller-identity
+{
+    "UserId": "AIDAJQ3H5DC3LEG2BKSLC",
+    "Account": "975426262029",
+    "Arn": "arn:aws:iam::975426262029:user/backup"
+}
+```
+
+Querying the EC2.
+
+```
+% aws --profile level4 ec2 describe-snapshots --owner-id 975426262029
+
+You must specify a region. You can also configure your region by running "aws configure".
+
+% aws --profile level4 ec2 describe-snapshots --owner-id 975426262029 --region us-west-2
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "OwnerId": "975426262029",
+            "Progress": "100%",
+            "SnapshotId": "snap-0b49342abd1bdcb89",
+            "StartTime": "2017-02-28T01:35:12+00:00",
+            "State": "completed",
+            "VolumeId": "vol-04f1c039bc13ea950",
+            "VolumeSize": 8,
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "flaws backup 2017.02.27"
+                }
+            ],
+            "StorageTier": "standard"
+        }
+    ]
+}
+```
